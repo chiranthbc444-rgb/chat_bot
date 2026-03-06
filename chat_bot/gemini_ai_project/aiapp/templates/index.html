@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gemini AI App</title>
+</head>
+
+<body>
+
+<h2>Ask Gemini AI</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="question" placeholder="Ask something">
+    <button type="submit">Ask</button>
+</form>
+
+<h3>Answer:</h3>
+<p>{{ answer }}</p>
+
+</body>
+</html>
