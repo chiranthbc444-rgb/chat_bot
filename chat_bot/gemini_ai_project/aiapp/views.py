@@ -4,11 +4,12 @@ from dotenv import load_dotenv
 import os
 from pathlib import Path
 
-# Load .env from the correct location (one level above the Django project)
+# Load .env from the correct location (two levels above aiapp folder)
 env_path = Path(__file__).resolve().parent.parent.parent / '.env'
 load_dotenv(dotenv_path=env_path)
 
-client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+# Initialize the Gemini client (auto-picks up GEMINI_API_KEY from env)
+client = genai.Client()
 
 def index(request):
 
@@ -19,7 +20,7 @@ def index(request):
 
         try:
             response = client.models.generate_content(
-                model="gemini-flash-latest",
+                model="gemini-2.5-flash",
                 contents=question,
             )
             answer = response.text
